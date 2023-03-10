@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  wrap_parameters format: []
   def index
     students = Student.all
     render json: students, status: :ok
@@ -10,7 +11,8 @@ class StudentsController < ApplicationController
   end
 
   def create
-    render json: Student.create!(student_params), status: :created
+    new_student = Student.create!(student_params)
+    render json: new_student, status: :created
   end
 
   def update
